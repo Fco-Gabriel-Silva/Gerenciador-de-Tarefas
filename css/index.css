@@ -1,4 +1,5 @@
 @import url(reset.css);
+@import url(banner.css);
 
 :root {
   --bg-main: #0f172a;
@@ -15,4 +16,6 @@ body {
   background-color: var(--bg-main);
   color: var(--text-main);
   font-family: var(--font-main);
+
+  margin: 20px 50px;
 }
