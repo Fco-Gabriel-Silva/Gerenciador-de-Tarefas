@@ -30,19 +30,19 @@
   }
   & .text-3 {
     order: 3;
-    font-weight: 200;
+    font-weight: 400;
   }
 }
 
 .banner h1 {
-  font-size: 60px;
-  font-weight: 800;
+  font-size: 70px;
+  font-weight: 900;
 
   & .row-2 {
     display: block;
 
     font-size: 40px;
-    font-weight: 600;
+    font-weight: 700;
 
     border-bottom: var(--neon-green) 2px solid;
     padding-bottom: 8px;
