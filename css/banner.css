@@ -1,0 +1,58 @@
+.banner {
+  height: 200px;
+  justify-content: space-between;
+}
+
+.banner .banner-text {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+
+  & .text-1 {
+    display: flex;
+    gap: 10px;
+    order: 1;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 65%;
+      height: 2px;
+      background-color: var(--neon-green);
+      margin-top: 5px;
+    }
+  }
+  & .text-2 {
+    order: 2;
+  }
+  & .text-3 {
+    order: 3;
+    font-weight: 400;
+  }
+}
+
+.banner h1 {
+  font-size: 70px;
+  font-weight: 900;
+
+  & .row-2 {
+    display: block;
+
+    font-size: 40px;
+    font-weight: 700;
+
+    border-bottom: var(--neon-green) 2px solid;
+    padding-bottom: 8px;
+  }
+}
+
+.banner .img-deku {
+  background: url(../assets/header-deku.png) center no-repeat;
+  background-size: cover;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+}

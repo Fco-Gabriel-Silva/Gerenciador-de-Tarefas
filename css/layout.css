@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+
+  display: flex;
+  padding: 0 30px;
+  margin-bottom: 24px;
+
+  border: 2px solid var(--bg-card);
+  border-radius: 10px;
+}
+
+.border-green {
+  border-color: var(--neon-green);
+}
+
+.text-green {
+  color: var(--neon-green);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}

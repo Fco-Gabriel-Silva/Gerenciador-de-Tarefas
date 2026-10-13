@@ -1,0 +1,23 @@
+@import url(reset.css);
+@import url(layout.css);
+@import url(banner.css);
+@import url(progress-bar.css);
+
+:root {
+  --bg-main: #0f172a;
+  --bg-card: #1e293b;
+  --neon-green: #22c55e;
+  --accent-yellow: #eab308;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+
+  --font-main: "Rajdhani", sans-serif;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-main);
+
+  margin: 20px 50px;
+}
