@@ -1,9 +1,6 @@
 .banner {
   height: 200px;
-
   justify-content: space-between;
-
-  border-color: var(--neon-green);
 }
 
 .banner .banner-text {
@@ -19,7 +16,6 @@
     gap: 10px;
     order: 1;
 
-    color: var(--neon-green);
     &::after {
       content: "";
       display: block;
@@ -34,7 +30,6 @@
   }
   & .text-3 {
     order: 3;
-    color: var(--text-muted);
     font-weight: 200;
   }
 }
@@ -52,10 +47,6 @@
     border-bottom: var(--neon-green) 2px solid;
     padding-bottom: 8px;
   }
-}
-
-.color-green {
-  color: var(--neon-green);
 }
 
 .banner .img-deku {
