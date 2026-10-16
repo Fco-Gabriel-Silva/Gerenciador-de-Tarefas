@@ -2,16 +2,30 @@
 @import url(layout.css);
 @import url(banner.css);
 @import url(progress-bar.css);
+@import url(add-task.css);
 
 :root {
-  --bg-main: #0f172a;
-  --bg-card: #1e293b;
-  --neon-green: #22c55e;
+  /* Cores de Fundo */
+  --bg-main: #000b1a;
+  --bg-card: #011020;
+  --bg-input: #06192e;
+  --bg-progress-track: #15334e;
+
+  /* Cores de Destaque e Ações */
+  --neon-green: #2ced91;
   --accent-yellow: #eab308;
+
+  /* Bordas Globais */
+  --border-main: #264961;
+
+  /* Tipografia */
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-
   --font-main: "Rajdhani", sans-serif;
+}
+
+* {
+  font-family: var(--font-main);
 }
 
 body {
