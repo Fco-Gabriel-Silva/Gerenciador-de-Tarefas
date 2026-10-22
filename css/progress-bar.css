@@ -1,0 +1,52 @@
+.progress-bar {
+  width: 100%;
+  height: 110px;
+
+  box-shadow: 0 0 10px var(--neon-green);
+
+  padding-block: 18px;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress-bar svg {
+  filter: drop-shadow(0 0 8px var(--neon-green));
+}
+
+.progress-bar-main {
+  flex-grow: 1;
+  padding: 0 20px;
+  border-left: solid 3px var(--border-main);
+  border-right: solid 3px var(--border-main);
+}
+
+.progress-bar-text {
+  font-size: 25px;
+  font-weight: 700;
+
+  margin-bottom: 10px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 22px;
+
+  background-color: var(--bg-progress-track);
+  border-radius: 20px;
+}
+
+.progress-bar-fill {
+  width: 40%;
+  height: 22px;
+
+  box-shadow: 0 0 16px var(--neon-green);
+
+  background-color: var(--neon-green);
+  border-radius: 20px;
+}
+
+.progress-bar-motivacional-text {
+  justify-items: center;
+  color: var(--text-muted);
+  font-weight: 400;
+}

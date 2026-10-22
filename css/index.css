@@ -1,0 +1,42 @@
+@import url(reset.css);
+@import url(layout.css);
+@import url(banner.css);
+@import url(progress-bar.css);
+@import url(add-task.css);
+@import url(task-list.css);
+
+:root {
+  /* Cores de Fundo */
+  --bg-main: #000b1a;
+  --bg-card: #011020;
+  --bg-input: #06192e;
+  --bg-progress-track: #15334e;
+
+  /* Cores de Destaque e Ações */
+  --neon-green: #2ced91;
+  --accent-yellow: #eab308;
+
+  /* Bordas Globais */
+  --border-main: #264961;
+
+  /* Tipografia */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --font-main: "Rajdhani", sans-serif;
+}
+
+* {
+  font-family: var(--font-main);
+}
+
+body {
+  margin: 20px 20%;
+
+  background-color: var(--bg-main);
+  background-image: url(../assets/my_hero_academia_overlay_texture.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  color: var(--text-main);
+  font-family: var(--font-main);
+}

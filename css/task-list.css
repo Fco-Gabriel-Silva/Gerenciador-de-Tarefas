@@ -1,0 +1,155 @@
+.task-list {
+  display: flex;
+  flex-direction: column;
+  padding-block: 18px;
+  gap: 10px;
+}
+
+.task-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-list-header .mission-count {
+  color: var(--text-muted);
+}
+
+.task-list .list {
+  max-height: 300px;
+  padding: 0 6px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-green) var(--bg-card);
+}
+
+.task-list .task {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  border: 1px solid var(--border-main);
+  border-radius: 10px;
+  background-color: var(--bg-input);
+
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease,
+    border-color 0.2s ease;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+
+  &:hover {
+    transition: 0.2s;
+    filter: brightness(1.1);
+    transform: scale(1.01);
+    border-color: var(--neon-green);
+
+    cursor: pointer;
+  }
+}
+
+.task .task-info {
+  display: flex;
+  align-items: center;
+
+  flex-grow: 3;
+}
+
+.task-info .task-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 24px;
+  height: 24px;
+
+  background-color: var(--bg-input);
+  border: 2px solid var(--border-main);
+  border-radius: 6px;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: var(--bg-progress-track);
+  }
+
+  &:checked {
+    background-color: var(--neon-green);
+    border-color: var(--neon-green);
+    box-shadow: 0 0 8px var(--neon-green);
+
+    &:after {
+      content: "✔";
+      font-size: 12px;
+      color: var(--bg-input);
+      font-weight: bold;
+    }
+  }
+
+  &:checked:hover {
+    background-color: var(--neon-green);
+    border-color: var(--neon-green);
+    box-shadow: 0 0 12px var(--neon-green);
+  }
+}
+
+.task-info .task-name {
+  font-size: 18px;
+  border-left: 2px solid var(--border-main);
+  padding-left: 10px;
+  margin-left: 10px;
+  transition: border-color 0.2s ease;
+
+  .task:hover & {
+    border-color: var(--neon-green);
+  }
+}
+
+.task .show-rank {
+  flex-grow: 2;
+
+  & img {
+    width: 80px;
+  }
+}
+
+.task .complete-or-not {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task .complete-or-not .task-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task .modal-config {
+  display: flex;
+
+  padding: 4px;
+
+  border-radius: 4px;
+  background-color: var(--bg-input);
+
+  transition: 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--bg-progress-track);
+  }
+}

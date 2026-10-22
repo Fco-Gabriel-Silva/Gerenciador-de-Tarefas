@@ -3,18 +3,295 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/index.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Gerenciador de Tarefas</title>
   </head>
   <body>
     <header>
-      <section class="banner">
-        <div></div>
+      <section class="banner container border-green">
+        <div class="banner-text">
+          <h1 class="text-2">
+            HERO ANALYSIS
+            <span class="row-2"
+              ><span class="text-green">FOR THE FUTURE</span> N° 13</span
+            >
+          </h1>
+          <p class="text-1 text-green">MY HERO ACADEMIA</p>
+          <p class="text-3 text-muted">Disciplina hoje. O herói de amanhã.</p>
+        </div>
+        <div class="img-deku">
+          <!--         <img
+          src="./assets/header-deku.png"
+          alt="Imagem de Izuku Midoriya com raios verdes"
+        /> -->
+        </div>
       </section>
-      <section class="progress-bar"></section>
+
+      <section class="progress-bar container border-green">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100"
+          height="100"
+          viewBox="0 0 24 24"
+          fill="#2CED91"
+          stroke="#2CED91"
+          stroke-width="0"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-zap preview-icon"
+        >
+          <path
+            d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z"
+            vector-effect="non-scaling-stroke"
+          />
+        </svg>
+
+        <div class="progress-bar-main">
+          <p class="progress-bar-text">
+            ONE FOR ALL CONTROL: <span class="text-green">40%</span>
+          </p>
+          <div class="progress-bar-container">
+            <div class="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <div class="progress-bar-motivacional-text">
+          <p>Mais controle.</p>
+          <p>Mais poder.</p>
+          <p>Mais você.</p>
+        </div>
+      </section>
     </header>
+
     <main>
-      <section class="add-task"></section>
-      <section class="task-list"></section>
+      <form class="add-task container">
+        <div class="add-task-input">
+          <div class="input-header text-header">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#2CED91"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-circle-fading-plus preview-icon"
+            >
+              <path d="M12 2a10 10 0 0 1 7.38 16.75" />
+              <path d="M12 8v8" />
+              <path d="M16 12H8" />
+              <path d="M2.5 8.875a10 10 0 0 0-.5 3" />
+              <path d="M2.83 16a10 10 0 0 0 2.43 3.4" />
+              <path d="M4.636 5.235a10 10 0 0 1 .891-.857" />
+              <path d="M8.644 21.42a10 10 0 0 0 7.631-.38" />
+            </svg>
+            <label for="task-name">REGISTRAR NOVA MISSÃO</label>
+          </div>
+          <input
+            type="text"
+            placeholder="Ex: 100 flexões de condicionamento..."
+            id="task-name"
+          />
+        </div>
+
+        <div class="add-task-rank">
+          <div class="rank-header text-header">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="#eab308"
+              stroke="#eab308"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-star preview-icon"
+            >
+              <path
+                d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"
+              />
+            </svg>
+            <label for="task-rank">RANK</label>
+          </div>
+          <select name="rank" id="task-rank">
+            <option value="A">Rank A</option>
+            <option value="B">Rank B</option>
+            <option value="C">Rank C</option>
+          </select>
+        </div>
+
+        <button type="button" class="add-task-button">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#011020"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-plus preview-icon"
+          >
+            <path d="M5 12h14" />
+            <path d="M12 5v14" />
+          </svg>
+          <p>Add</p>
+        </button>
+      </form>
+
+      <section class="task-list container">
+        <div class="task-list-header">
+          <div class="text-header">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="34"
+              height="34"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#2ced91"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-clipboard-list preview-icon"
+            >
+              <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+              <path
+                d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+              />
+              <path d="M12 11h4" />
+              <path d="M12 16h4" />
+              <path d="M8 11h.01" />
+              <path d="M8 16h.01" />
+            </svg>
+            <h2>MINHAS MISSÕES</h2>
+          </div>
+          <p class="mission-count"><span class="text-green">5</span> MISSÕES</p>
+        </div>
+
+        <div class="list">
+          <div class="task">
+            <div class="task-info">
+              <input
+                class="task-checkbox"
+                type="checkbox"
+                name="task-complete"
+              />
+              <p class="task-name">50 Flexões de Condicionamento</p>
+            </div>
+            <div class="show-rank">
+              <img src="/assets/rank_c.png" alt="Rank C" />
+            </div>
+            <div class="complete-or-not">
+              <div class="task-status">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#2ced91"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big preview-icon"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>
+                <p class="text-green">Concluída!</p>
+              </div>
+              <button class="modal-config" type="button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#94a3b8"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-ellipsis-vertical preview-icon"
+                >
+                  <circle cx="12" cy="12" r="1" />
+                  <circle cx="12" cy="5" r="1" />
+                  <circle cx="12" cy="19" r="1" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="task">
+            <div class="task-info">
+              <input
+                class="task-checkbox"
+                type="checkbox"
+                name="task-complete"
+              />
+              <p class="task-name">20 Flexões de Condicionamento</p>
+            </div>
+            <div class="show-rank">
+              <img src="/assets/rank_b.png" alt="Rank B" />
+            </div>
+            <div class="complete-or-not">
+              <div class="task-status">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#94a3b8"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-dashed-check preview-icon"
+                >
+                  <path d="M10.1 2.182a10 10 0 013.8 0" />
+                  <path d="M13.9 21.818a10 10 0 01-3.8 0" />
+                  <path d="m16 9-5.5 5.5L8 12" />
+                  <path d="M17.609 3.721a10 10 0 012.69 2.7" />
+                  <path d="M2.182 13.9a10 10 0 010-3.8" />
+                  <path d="M20.279 17.609a10 10 0 01-2.7 2.69" />
+                  <path d="M21.818 10.1a10 10 0 010 3.8" />
+                  <path d="M3.721 6.391a10 10 0 012.7-2.69" />
+                  <path d="M6.391 20.279a10 10 0 01-2.69-2.7" />
+                </svg>
+                <p class="text-muted">Pendente.</p>
+              </div>
+              <button class="modal-config" type="button">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#94a3b8"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-ellipsis-vertical preview-icon"
+                >
+                  <circle cx="12" cy="12" r="1" />
+                  <circle cx="12" cy="5" r="1" />
+                  <circle cx="12" cy="19" r="1" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>
