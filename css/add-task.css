@@ -2,7 +2,7 @@
   height: 140px;
   padding-block: 18px;
 
-  gap: 40px;
+  gap: 20px;
 }
 
 /* --- ADD TASK INPUT --- */
@@ -114,5 +114,10 @@
     transition: 0.2s;
     outline: none;
     filter: drop-shadow(0 0 10px var(--neon-green));
+  }
+
+  &:active {
+    transition: 0.2s;
+    transform: translateY(3px) scale(0.94);
   }
 }

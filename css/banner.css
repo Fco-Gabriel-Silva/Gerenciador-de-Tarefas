@@ -1,12 +1,17 @@
 .banner {
   height: 200px;
+  padding-right: 0;
+  overflow: hidden;
+
+  filter: drop-shadow(0 0 4px var(--neon-green));
+
   justify-content: space-between;
+  gap: 30px;
 }
 
 .banner .banner-text {
-  width: 100%;
-
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: center;
   gap: 10px;
@@ -35,8 +40,9 @@
 }
 
 .banner h1 {
-  font-size: 70px;
+  font-size: 64px;
   font-weight: 900;
+  text-wrap: nowrap;
 
   & .row-2 {
     display: block;
@@ -49,10 +55,14 @@
   }
 }
 
+.banner span.text-green {
+  text-shadow: 0 0 4px var(--neon-green);
+}
+
 .banner .img-deku {
   background: url(../assets/header-deku.png) center no-repeat;
   background-size: cover;
-  border-radius: 10px;
   width: 100%;
+  min-width: 424px;
   height: 100%;
 }

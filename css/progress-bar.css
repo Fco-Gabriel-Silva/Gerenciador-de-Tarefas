@@ -1,9 +1,15 @@
 .progress-bar {
   width: 100%;
 
+  filter: drop-shadow(0 0 4px var(--neon-green));
+
   padding-block: 10px;
   align-items: center;
   gap: 10px;
+}
+
+.progress-bar svg {
+  filter: drop-shadow(0 0 8px var(--neon-green));
 }
 
 .progress-bar-main {
@@ -31,6 +37,8 @@
 .progress-bar-fill {
   width: 40%;
   height: 22px;
+
+  filter: drop-shadow(0 0 10px var(--neon-green));
 
   background-color: var(--neon-green);
   border-radius: 20px;
