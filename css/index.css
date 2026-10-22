@@ -3,6 +3,7 @@
 @import url(banner.css);
 @import url(progress-bar.css);
 @import url(add-task.css);
+@import url(task-list.css);
 
 :root {
   /* Cores de Fundo */

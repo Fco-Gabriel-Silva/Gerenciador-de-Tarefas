@@ -130,3 +130,9 @@ input {
   border-style: none;
   outline-style: none;
 }
+button {
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+}
