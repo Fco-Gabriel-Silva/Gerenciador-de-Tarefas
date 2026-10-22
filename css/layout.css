@@ -22,3 +22,15 @@
 .text-muted {
   color: var(--text-muted);
 }
+
+.text-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  & label,
+  p {
+    font-size: 22px;
+    font-weight: 600;
+  }
+}

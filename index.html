@@ -73,7 +73,7 @@
     <main>
       <form class="add-task container">
         <div class="add-task-input">
-          <div class="input-header">
+          <div class="input-header text-header">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="34"
@@ -104,7 +104,7 @@
         </div>
 
         <div class="add-task-rank">
-          <div class="rank-header">
+          <div class="rank-header text-header">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="34"
@@ -152,14 +152,14 @@
 
       <section class="task-list container">
         <div class="task-list-header">
-          <div>
+          <div class="text-header">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
+              width="34"
+              height="34"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="currentColor"
+              stroke="#2ced91"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -176,14 +176,22 @@
             </svg>
             <p>MINHAS MISSÕES</p>
           </div>
-          <p><span>5</span> MISSÕES</p>
+          <p><span class="text-green">5</span> MISSÕES</p>
         </div>
 
         <div class="list">
           <div class="task">
-            <input type="checkbox" name="task-complete" />
-            <p>50 Flexões de Condicionamento</p>
-            <div class="show-rank"></div>
+            <div class="task-info">
+              <input
+                class="task-checkbox"
+                type="checkbox"
+                name="task-complete"
+              />
+              <p>50 Flexões de Condicionamento</p>
+            </div>
+            <div class="show-rank">
+              <img src="/assets/rank_c.png" alt="Rank C" />
+            </div>
             <div class="complete-or-not">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -201,6 +209,63 @@
                 <path d="m9 11 3 3L22 4" />
               </svg>
               <p>Concluída!</p>
+              <div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-ellipsis-vertical preview-icon"
+                >
+                  <circle cx="12" cy="12" r="1" />
+                  <circle cx="12" cy="5" r="1" />
+                  <circle cx="12" cy="19" r="1" />
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="task">
+            <div class="task-info">
+              <input
+                class="task-checkbox"
+                type="checkbox"
+                name="task-complete"
+              />
+              <p>20 Flexões de Condicionamento</p>
+            </div>
+            <div class="show-rank">
+              <img src="/assets/rank_b.png" alt="Rank B" />
+            </div>
+            <div class="complete-or-not">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-circle-dashed-check preview-icon"
+              >
+                <path d="M10.1 2.182a10 10 0 013.8 0" />
+                <path d="M13.9 21.818a10 10 0 01-3.8 0" />
+                <path d="m16 9-5.5 5.5L8 12" />
+                <path d="M17.609 3.721a10 10 0 012.69 2.7" />
+                <path d="M2.182 13.9a10 10 0 010-3.8" />
+                <path d="M20.279 17.609a10 10 0 01-2.7 2.69" />
+                <path d="M21.818 10.1a10 10 0 010 3.8" />
+                <path d="M3.721 6.391a10 10 0 012.7-2.69" />
+                <path d="M6.391 20.279a10 10 0 01-2.69-2.7" />
+              </svg>
+              <p>Pendente...</p>
               <div>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
