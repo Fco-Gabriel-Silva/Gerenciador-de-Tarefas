@@ -16,9 +16,17 @@
 }
 
 .task-list .list {
+  max-height: 300px;
+  padding: 0 6px;
+
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--neon-green) var(--bg-card);
 }
 
 .task-list .task {
