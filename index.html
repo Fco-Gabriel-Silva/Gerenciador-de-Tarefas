@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script type="module" src="/js/index.js" defer></script>
     <title>Gerenciador de Tarefas</title>
   </head>
   <body>
@@ -179,8 +180,8 @@
           <p class="mission-count"><span class="text-green">5</span> MISSÕES</p>
         </div>
 
-        <div class="list">
-          <div class="task">
+        <ul class="list">
+          <li class="task">
             <div class="task-info">
               <input
                 class="task-checkbox"
@@ -192,7 +193,7 @@
             <div class="show-rank">
               <img src="/assets/rank_c.png" alt="Rank C" />
             </div>
-            <div class="complete-or-not">
+            <div class="complete-or-pendent">
               <div class="task-status">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -209,9 +210,12 @@
                   <path d="M21.801 10A10 10 0 1 1 17 3.335" />
                   <path d="m9 11 3 3L22 4" />
                 </svg>
-                <p class="text-green">Concluída!</p>
+                <div class="task-status-info">
+                  <p class="text-green">Concluída!</p>
+                  <p class="text-muted">22/10/2026</p>
+                </div>
               </div>
-              <button class="modal-config" type="button">
+              <button class="dropdown-config" type="button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -230,9 +234,9 @@
                 </svg>
               </button>
             </div>
-          </div>
+          </li>
 
-          <div class="task">
+          <li class="task">
             <div class="task-info">
               <input
                 class="task-checkbox"
@@ -244,7 +248,7 @@
             <div class="show-rank">
               <img src="/assets/rank_b.png" alt="Rank B" />
             </div>
-            <div class="complete-or-not">
+            <div class="complete-or-pendent">
               <div class="task-status">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -268,9 +272,11 @@
                   <path d="M3.721 6.391a10 10 0 012.7-2.69" />
                   <path d="M6.391 20.279a10 10 0 01-2.69-2.7" />
                 </svg>
-                <p class="text-muted">Pendente.</p>
+                <div class="task-status-info">
+                  <p class="text-muted">Pendente.</p>
+                </div>
               </div>
-              <button class="modal-config" type="button">
+              <button class="dropdown-config" type="button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -289,8 +295,8 @@
                 </svg>
               </button>
             </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </section>
     </main>
   </body>

@@ -106,6 +106,8 @@
 }
 
 .task-info .task-name {
+  width: 270px;
+
   font-size: 18px;
   border-left: 2px solid var(--border-main);
   padding-left: 10px;
@@ -125,20 +127,20 @@
   }
 }
 
-.task .complete-or-not {
+.task .complete-or-pendent {
   display: flex;
   flex-grow: 1;
   align-items: center;
   justify-content: space-between;
 }
 
-.task .complete-or-not .task-status {
+.task .complete-or-pendent .task-status {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.task .modal-config {
+.task .dropdown-config {
   display: flex;
 
   padding: 4px;
