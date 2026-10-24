@@ -1,10 +1,10 @@
 export class TaskInterface {
   task;
-  divList;
+  ulList;
 
   constructor(task) {
     this.task = task;
-    this.divList = document.querySelector(".task-list .list");
+    this.ulList = document.querySelector(".task-list .list");
   }
 
   build() {
@@ -16,7 +16,7 @@ export class TaskInterface {
     const hasCompleteDate = this.task.statusInfo.completeDate;
 
     /* Criando Elementos */
-    const divTask = document.createElement("div");
+    const liTask = document.createElement("li");
 
     const divTaskInfo = document.createElement("div");
     const inputTaskCheckbox = document.createElement("input");
@@ -87,7 +87,7 @@ export class TaskInterface {
                 </svg>`;
 
     /* Adicionando classes nos elementos */
-    divTask.classList.add("task");
+    liTask.classList.add("task");
     divTaskInfo.classList.add("task-info");
     inputTaskCheckbox.classList.add("task-checkbox");
     pTaskName.classList.add("task-name");
@@ -124,7 +124,7 @@ export class TaskInterface {
 
     /* Estruturando os elementos */
 
-    divTask.append(divTaskInfo, divShowRank, divCompleteOrPendent);
+    liTask.append(divTaskInfo, divShowRank, divCompleteOrPendent);
     divTaskInfo.append(inputTaskCheckbox, pTaskName);
     divShowRank.appendChild(imgRank);
     divCompleteOrPendent.append(divTaskStatus, buttonDropdownConfig);
@@ -137,6 +137,6 @@ export class TaskInterface {
 
     /* Adicionando task na lista */
 
-    this.divList.appendChild(divTask);
+    this.ulList.appendChild(liTask);
   }
 }
