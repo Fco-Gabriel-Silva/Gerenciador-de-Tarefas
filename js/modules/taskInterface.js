@@ -1,34 +1,35 @@
 export class TaskInterface {
-  task;
+  tasks;
   ulList;
 
-  constructor(task) {
-    this.task = task;
+  constructor(tasks) {
+    this.tasks = [...tasks];
     this.ulList = document.querySelector(".task-list .list");
   }
 
   build() {
-    /* Criando variaveis */
-    const isCompleteOrPendent = this.task.statusInfo.statusTask
-      ? "Concluída!"
-      : "Pendente.";
+    for (let i = 0; i < this.tasks.length; i++) {
+      /* Criando variaveis */
+      const isCompleteOrPendent = this.tasks[i].statusInfo.statusTask
+        ? "Concluída!"
+        : "Pendente.";
 
-    const hasCompleteDate = this.task.statusInfo.completeDate;
+      const hasCompleteDate = this.tasks[i].statusInfo.completeDate;
 
-    /* Criando Elementos */
-    const liTask = document.createElement("li");
+      /* Criando Elementos */
+      const liTask = document.createElement("li");
 
-    const divTaskInfo = document.createElement("div");
-    const inputTaskCheckbox = document.createElement("input");
-    const pTaskName = document.createElement("p");
+      const divTaskInfo = document.createElement("div");
+      const inputTaskCheckbox = document.createElement("input");
+      const pTaskName = document.createElement("p");
 
-    const divShowRank = document.createElement("div");
-    const imgRank = document.createElement("img");
+      const divShowRank = document.createElement("div");
+      const imgRank = document.createElement("img");
 
-    const divCompleteOrPendent = document.createElement("div");
-    const divTaskStatus = document.createElement("div");
-    const svgCompleteOrPendent = this.task.statusInfo.statusTask
-      ? `<svg
+      const divCompleteOrPendent = document.createElement("div");
+      const divTaskStatus = document.createElement("div");
+      const svgCompleteOrPendent = this.tasks[i].statusInfo.statusTask
+        ? `<svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -43,7 +44,7 @@ export class TaskInterface {
                   <path d="M21.801 10A10 10 0 1 1 17 3.335" />
                   <path d="m9 11 3 3L22 4" />
                 </svg>`
-      : `<svg
+        : `<svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -65,11 +66,11 @@ export class TaskInterface {
                   <path d="M3.721 6.391a10 10 0 012.7-2.69" />
                   <path d="M6.391 20.279a10 10 0 01-2.69-2.7" />
                 </svg>`;
-    const divTaskStatusInfo = document.createElement("div");
-    const pCompleteOrPendent = document.createElement("p");
-    const pCompleteDate = document.createElement("p");
-    const buttonDropdownConfig = document.createElement("button");
-    const svgDropdownConfig = `<svg
+      const divTaskStatusInfo = document.createElement("div");
+      const pCompleteOrPendent = document.createElement("p");
+      const pCompleteDate = document.createElement("p");
+      const buttonDropdownConfig = document.createElement("button");
+      const svgDropdownConfig = `<svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -86,57 +87,59 @@ export class TaskInterface {
                   <circle cx="12" cy="19" r="1" />
                 </svg>`;
 
-    /* Adicionando classes nos elementos */
-    liTask.classList.add("task");
-    divTaskInfo.classList.add("task-info");
-    inputTaskCheckbox.classList.add("task-checkbox");
-    pTaskName.classList.add("task-name");
-    divShowRank.classList.add("show-rank");
-    divCompleteOrPendent.classList.add("complete-or-pendent");
-    divTaskStatus.classList.add("task-status");
-    divTaskStatusInfo.classList.add("task-status-info");
-    buttonDropdownConfig.classList.add("dropdown-config");
+      /* Adicionando classes nos elementos */
+      liTask.classList.add("task");
+      divTaskInfo.classList.add("task-info");
+      inputTaskCheckbox.classList.add("task-checkbox");
+      pTaskName.classList.add("task-name");
+      divShowRank.classList.add("show-rank");
+      divCompleteOrPendent.classList.add("complete-or-pendent");
+      divTaskStatus.classList.add("task-status");
+      divTaskStatusInfo.classList.add("task-status-info");
+      buttonDropdownConfig.classList.add("dropdown-config");
 
-    /* Adicionando informações nos elementos */
+      /* Adicionando informações nos elementos */
 
-    pTaskName.textContent = this.task.name;
+      pTaskName.textContent = this.tasks[i].name;
 
-    pCompleteOrPendent.textContent = isCompleteOrPendent;
-    if (this.task.statusInfo.statusTask) {
-      pCompleteOrPendent.classList.add("text-green");
-    } else {
-      pCompleteOrPendent.classList.add("text-muted");
+      pCompleteOrPendent.textContent = isCompleteOrPendent;
+      if (this.tasks[i].statusInfo.statusTask) {
+        liTask.classList.add("completed");
+
+        pCompleteOrPendent.classList.add("text-green");
+
+        pCompleteDate.textContent = this.tasks[i].statusInfo.completeDate;
+        pCompleteDate.classList.add("text-muted");
+      } else {
+        pCompleteOrPendent.classList.add("text-muted");
+      }
+
+      /* Adicionando Atributos nos elementos */
+
+      inputTaskCheckbox.setAttribute("type", "checkbox");
+      inputTaskCheckbox.setAttribute("name", "task-complete");
+
+      imgRank.setAttribute("src", this.tasks[i].rankInfo.asset);
+      imgRank.setAttribute("alt", `Missão Rank ${this.tasks[i].rankInfo.name}`);
+
+      buttonDropdownConfig.setAttribute("type", "button");
+
+      /* Estruturando os elementos */
+
+      liTask.append(divTaskInfo, divShowRank, divCompleteOrPendent);
+      divTaskInfo.append(inputTaskCheckbox, pTaskName);
+      divShowRank.appendChild(imgRank);
+      divCompleteOrPendent.append(divTaskStatus, buttonDropdownConfig);
+
+      divTaskStatus.insertAdjacentHTML("afterbegin", svgCompleteOrPendent);
+      divTaskStatus.appendChild(divTaskStatusInfo);
+      divTaskStatusInfo.append(pCompleteOrPendent, pCompleteDate);
+
+      buttonDropdownConfig.innerHTML = svgDropdownConfig;
+
+      /* Adicionando task na lista */
+
+      this.ulList.appendChild(liTask);
     }
-
-    if (hasCompleteDate) {
-      pCompleteDate.textContent = this.task.statusInfo.completeDate;
-    }
-
-    /* Adicionando Atributos nos elementos */
-
-    inputTaskCheckbox.setAttribute("type", "checkbox");
-    inputTaskCheckbox.setAttribute("name", "task-complete");
-
-    imgRank.setAttribute("src", this.task.rankInfo.asset);
-    imgRank.setAttribute("alt", `Missão Rank ${this.task.rankInfo.name}`);
-
-    buttonDropdownConfig.setAttribute("type", "button");
-
-    /* Estruturando os elementos */
-
-    liTask.append(divTaskInfo, divShowRank, divCompleteOrPendent);
-    divTaskInfo.append(inputTaskCheckbox, pTaskName);
-    divShowRank.appendChild(imgRank);
-    divCompleteOrPendent.append(divTaskStatus, buttonDropdownConfig);
-
-    divTaskStatus.insertAdjacentHTML("afterbegin", svgCompleteOrPendent);
-    divTaskStatus.appendChild(divTaskStatusInfo);
-    divTaskStatusInfo.append(pCompleteOrPendent, pCompleteDate);
-
-    buttonDropdownConfig.innerHTML = svgDropdownConfig;
-
-    /* Adicionando task na lista */
-
-    this.ulList.appendChild(liTask);
   }
 }

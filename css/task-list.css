@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   padding-block: 18px;
-  gap: 10px;
+  gap: 8px;
 }
 
 .task-list-header {
@@ -17,7 +17,7 @@
 
 .task-list .list {
   max-height: 300px;
-  padding: 0 6px;
+  padding: 2px 6px;
 
   display: flex;
   flex-direction: column;
@@ -46,13 +46,24 @@
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
 
-  &:hover {
+  &:not(.completed):hover {
     transition: 0.2s;
     filter: brightness(1.1);
     transform: scale(1.01);
     border-color: var(--neon-green);
 
     cursor: pointer;
+  }
+
+  &.completed {
+    border-color: var(--border-main);
+    background-color: var(--bg-card);
+    opacity: 0.8;
+
+    .task-name {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
   }
 }
 
@@ -114,7 +125,7 @@
   margin-left: 10px;
   transition: border-color 0.2s ease;
 
-  .task:hover & {
+  .task:not(.completed):hover & {
     border-color: var(--neon-green);
   }
 }
