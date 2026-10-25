@@ -139,6 +139,8 @@
 }
 
 .task .complete-or-pendent {
+  width: 200px;
+
   display: flex;
   flex-grow: 1;
   align-items: center;

@@ -106,6 +106,8 @@ export class TaskInterface {
       if (this.tasks[i].statusInfo.statusTask) {
         liTask.classList.add("completed");
 
+        inputTaskCheckbox.checked = true;
+
         pCompleteOrPendent.classList.add("text-green");
 
         pCompleteDate.textContent = this.tasks[i].statusInfo.completeDate;
@@ -116,13 +118,13 @@ export class TaskInterface {
 
       /* Adicionando Atributos nos elementos */
 
-      inputTaskCheckbox.setAttribute("type", "checkbox");
-      inputTaskCheckbox.setAttribute("name", "task-complete");
+      inputTaskCheckbox.type = "checkbox";
+      inputTaskCheckbox.name = "task-complete";
 
-      imgRank.setAttribute("src", this.tasks[i].rankInfo.asset);
-      imgRank.setAttribute("alt", `Missão Rank ${this.tasks[i].rankInfo.name}`);
+      imgRank.src = this.tasks[i].rankInfo.asset;
+      imgRank.alt = `Missão Rank ${this.tasks[i].rankInfo.name}`;
 
-      buttonDropdownConfig.setAttribute("type", "button");
+      buttonDropdownConfig.type = "button";
 
       /* Estruturando os elementos */
 
