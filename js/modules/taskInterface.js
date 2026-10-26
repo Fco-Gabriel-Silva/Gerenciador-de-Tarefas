@@ -9,12 +9,72 @@ export class TaskInterface {
 
   build() {
     for (let i = 0; i < this.tasks.length; i++) {
-      /* Criando variaveis */
-      const isCompleteOrPendent = this.tasks[i].statusInfo.statusTask
-        ? "Concluída!"
-        : "Pendente.";
+      /* Criando funções */
 
-      const hasCompleteDate = this.tasks[i].statusInfo.completeDate;
+      const updateTaskState = (isCompleted) => {
+        console.log(isCompleted);
+        if (isCompleted) {
+          this.tasks[i].complete();
+          inputTaskCheckbox.checked = true;
+          pCompleteOrPendent.textContent = "Concluída!";
+          pCompleteDate.textContent = this.tasks[i].statusInfo.completeDate;
+
+          liTask.classList.add("completed");
+          pCompleteOrPendent.classList.remove("text-muted");
+          pCompleteOrPendent.classList.add("text-green");
+          pCompleteDate.classList.add("text-muted");
+        } else {
+          this.tasks[i].uncomplete();
+          inputTaskCheckbox.checked = false;
+          pCompleteOrPendent.textContent = "Pendente.";
+          pCompleteDate.textContent = "";
+
+          liTask.classList.remove("completed");
+          pCompleteOrPendent.classList.remove("text-green");
+          pCompleteOrPendent.classList.add("text-muted");
+        }
+      };
+
+      /* Criando variaveis */
+      const isComplete = this.tasks[i].statusInfo.statusTask;
+      const textCompleteOrPendent = isComplete ? "Concluída!" : "Pendente.";
+      const svgComplete = `<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#2ced91"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-check-big preview-icon svg-complete"
+                >
+                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
+                  <path d="m9 11 3 3L22 4" />
+                </svg>`;
+      const svgPendent = `<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#94a3b8"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-circle-dashed-check preview-icon svg-pendent"
+                >
+                  <path d="M10.1 2.182a10 10 0 013.8 0" />
+                  <path d="M13.9 21.818a10 10 0 01-3.8 0" />
+                  <path d="m16 9-5.5 5.5L8 12" />
+                  <path d="M17.609 3.721a10 10 0 012.69 2.7" />
+                  <path d="M2.182 13.9a10 10 0 010-3.8" />
+                  <path d="M20.279 17.609a10 10 0 01-2.7 2.69" />
+                  <path d="M21.818 10.1a10 10 0 010 3.8" />
+                  <path d="M3.721 6.391a10 10 0 012.7-2.69" />
+                  <path d="M6.391 20.279a10 10 0 01-2.69-2.7" />
+                </svg>`;
 
       /* Criando Elementos */
       const liTask = document.createElement("li");
@@ -28,44 +88,8 @@ export class TaskInterface {
 
       const divCompleteOrPendent = document.createElement("div");
       const divTaskStatus = document.createElement("div");
-      const svgCompleteOrPendent = this.tasks[i].statusInfo.statusTask
-        ? `<svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#2ced91"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-circle-check-big preview-icon"
-                >
-                  <path d="M21.801 10A10 10 0 1 1 17 3.335" />
-                  <path d="m9 11 3 3L22 4" />
-                </svg>`
-        : `<svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#94a3b8"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-circle-dashed-check preview-icon"
-                >
-                  <path d="M10.1 2.182a10 10 0 013.8 0" />
-                  <path d="M13.9 21.818a10 10 0 01-3.8 0" />
-                  <path d="m16 9-5.5 5.5L8 12" />
-                  <path d="M17.609 3.721a10 10 0 012.69 2.7" />
-                  <path d="M2.182 13.9a10 10 0 010-3.8" />
-                  <path d="M20.279 17.609a10 10 0 01-2.7 2.69" />
-                  <path d="M21.818 10.1a10 10 0 010 3.8" />
-                  <path d="M3.721 6.391a10 10 0 012.7-2.69" />
-                  <path d="M6.391 20.279a10 10 0 01-2.69-2.7" />
-                </svg>`;
+      divTaskStatus.insertAdjacentHTML("afterbegin", svgComplete);
+      divTaskStatus.insertAdjacentHTML("afterbegin", svgPendent);
       const divTaskStatusInfo = document.createElement("div");
       const pCompleteOrPendent = document.createElement("p");
       const pCompleteDate = document.createElement("p");
@@ -98,12 +122,26 @@ export class TaskInterface {
       divTaskStatusInfo.classList.add("task-status-info");
       buttonDropdownConfig.classList.add("dropdown-config");
 
+      /* Adiciona addEventListener */
+
+      inputTaskCheckbox.onclick = (e) => e.stopPropagation();
+
+      inputTaskCheckbox.onchange = (e) => {
+        updateTaskState(e.target.checked);
+      };
+
+      liTask.onclick = (e) => {
+        if (this.tasks[i].statusInfo.statusTask) return;
+        const newState = !this.tasks[i].statusInfo.statusTask;
+        updateTaskState(newState);
+      };
+
       /* Adicionando informações nos elementos */
 
       pTaskName.textContent = this.tasks[i].name;
 
-      pCompleteOrPendent.textContent = isCompleteOrPendent;
-      if (this.tasks[i].statusInfo.statusTask) {
+      pCompleteOrPendent.textContent = textCompleteOrPendent;
+      if (isComplete) {
         liTask.classList.add("completed");
 
         inputTaskCheckbox.checked = true;
@@ -133,7 +171,6 @@ export class TaskInterface {
       divShowRank.appendChild(imgRank);
       divCompleteOrPendent.append(divTaskStatus, buttonDropdownConfig);
 
-      divTaskStatus.insertAdjacentHTML("afterbegin", svgCompleteOrPendent);
       divTaskStatus.appendChild(divTaskStatusInfo);
       divTaskStatusInfo.append(pCompleteOrPendent, pCompleteDate);
 

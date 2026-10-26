@@ -22,4 +22,14 @@ export class Task {
     this.updatedAt = null;
     this.deletedAt = null;
   }
+
+  complete() {
+    this.statusInfo.statusTask = true;
+    this.statusInfo.completeDate = new Date().toLocaleDateString("pt-br");
+  }
+
+  uncomplete() {
+    this.statusInfo.statusTask = false;
+    this.statusInfo.completeDate = null;
+  }
 }

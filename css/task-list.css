@@ -153,6 +153,20 @@
   gap: 10px;
 }
 
+.task .svg-complete {
+  display: none;
+}
+.task .svg-pendent {
+  display: block;
+}
+
+.task.completed .svg-complete {
+  display: block;
+}
+.task.completed .svg-pendent {
+  display: none;
+}
+
 .task .dropdown-config {
   display: flex;
 
