@@ -3,6 +3,7 @@ import { Task } from "./task.js";
 export class TaskInterface {
   tasks;
   ulList;
+  pMissionCount;
   formAddTask;
   inputTaskName;
   selectTaskRank;
@@ -11,6 +12,7 @@ export class TaskInterface {
   constructor(tasks) {
     this.tasks = [...tasks];
     this.ulList = document.querySelector(".task-list .list");
+    this.pMissionCount = document.querySelector(".mission-count span");
     this.formAddTask = document.querySelector("form");
     this.inputTaskName = document.querySelector("form input#task-name");
     this.selectTaskRank = document.querySelector("form select#task-rank");
@@ -224,5 +226,6 @@ export class TaskInterface {
 
       this.ulList.appendChild(liTask);
     }
+    this.pMissionCount.textContent = this.tasks.length;
   }
 }
