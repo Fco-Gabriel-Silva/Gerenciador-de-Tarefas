@@ -1,10 +1,49 @@
+import { Task } from "./task.js";
+
 export class TaskInterface {
   tasks;
   ulList;
+  formAddTaks;
+  inputTaskName;
+  selectTaskRank;
+  addTaskButton;
 
   constructor(tasks) {
     this.tasks = [...tasks];
     this.ulList = document.querySelector(".task-list .list");
+    this.formAddTaks = document.querySelector("form");
+    this.inputTaskName = document.querySelector("form input#task-name");
+    this.selectTaskRank = document.querySelector("form select#task-rank");
+    this.addTaskButton = document.querySelector(".add-task-button");
+
+    this.handleAddTask();
+  }
+
+  clearList() {
+    while (this.ulList.firstChild) {
+      this.ulList.removeChild(this.ulList.firstChild);
+    }
+  }
+
+  handleAddTask() {
+    this.addTaskButton.onclick = (e) => {
+      e.stopPropagation();
+
+      const taskName = this.inputTaskName.value;
+      const taskRank = this.selectTaskRank.value;
+
+      if (!taskName.trim()) return;
+
+      const newTask = new Task(taskName, taskRank);
+
+      this.tasks.push(newTask);
+
+      this.inputTaskName.value = "";
+      this.selectTaskRank.value = "A";
+
+      this.clearList();
+      this.build();
+    };
   }
 
   build() {
@@ -12,7 +51,6 @@ export class TaskInterface {
       /* Criando funções */
 
       const updateTaskState = (isCompleted) => {
-        console.log(isCompleted);
         if (isCompleted) {
           this.tasks[i].complete();
           inputTaskCheckbox.checked = true;
@@ -125,6 +163,7 @@ export class TaskInterface {
       /* Adiciona addEventListener */
 
       inputTaskCheckbox.onclick = (e) => e.stopPropagation();
+      buttonDropdownConfig.onclick = (e) => e.stopPropagation();
 
       inputTaskCheckbox.onchange = (e) => {
         updateTaskState(e.target.checked);
