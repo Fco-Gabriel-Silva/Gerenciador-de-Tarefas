@@ -3,7 +3,7 @@ import { Task } from "./task.js";
 export class TaskInterface {
   tasks;
   ulList;
-  formAddTaks;
+  formAddTask;
   inputTaskName;
   selectTaskRank;
   addTaskButton;
@@ -11,7 +11,7 @@ export class TaskInterface {
   constructor(tasks) {
     this.tasks = [...tasks];
     this.ulList = document.querySelector(".task-list .list");
-    this.formAddTaks = document.querySelector("form");
+    this.formAddTask = document.querySelector("form");
     this.inputTaskName = document.querySelector("form input#task-name");
     this.selectTaskRank = document.querySelector("form select#task-rank");
     this.addTaskButton = document.querySelector(".add-task-button");
@@ -25,22 +25,27 @@ export class TaskInterface {
     }
   }
 
+  updateStorage() {
+    localStorage.setItem("tasks", JSON.stringify(this.tasks));
+  }
+
   handleAddTask() {
-    this.addTaskButton.onclick = (e) => {
-      e.stopPropagation();
+    this.formAddTask.onsubmit = (e) => {
+      e.preventDefault();
 
       const taskName = this.inputTaskName.value;
       const taskRank = this.selectTaskRank.value;
 
       if (!taskName.trim()) return;
 
-      const newTask = new Task(taskName, taskRank);
+      const newTask = new Task({ name: taskName, rankName: taskRank });
 
       this.tasks.push(newTask);
 
       this.inputTaskName.value = "";
       this.selectTaskRank.value = "A";
 
+      this.updateStorage();
       this.clearList();
       this.build();
     };

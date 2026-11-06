@@ -7,7 +7,15 @@ export class Task {
   updatedAt;
   deletedAt;
 
-  constructor(name, rankName) {
+  constructor(data) {
+    const name = data.name;
+    const rankName = data.rankName || data.rankInfo?.name;
+    const statusTask = data.statusTask ?? data.statusInfo?.statusTask ?? false;
+    const completeDate =
+      data.completeDate ?? data.statusInfo?.completeDate ?? null;
+    const updatedAt = data.updatedAt ?? null;
+    const deletedAt = data.deletedAt ?? null;
+
     const assetRank = pickRankAsset(rankName);
 
     this.name = name;
@@ -16,11 +24,11 @@ export class Task {
       asset: assetRank,
     };
     this.statusInfo = {
-      statusTask: false,
-      completeDate: null,
+      statusTask: statusTask,
+      completeDate: completeDate,
     };
-    this.updatedAt = null;
-    this.deletedAt = null;
+    this.updatedAt = updatedAt;
+    this.deletedAt = deletedAt;
   }
 
   complete() {
