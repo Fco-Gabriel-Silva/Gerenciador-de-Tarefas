@@ -68,6 +68,8 @@ export class TaskInterface {
           pCompleteOrPendent.classList.remove("text-muted");
           pCompleteOrPendent.classList.add("text-green");
           pCompleteDate.classList.add("text-muted");
+          buttonEdit.disabled = true;
+          buttonDelete.disabled = true;
         } else {
           this.tasks[i].uncomplete();
           inputTaskCheckbox.checked = false;
@@ -77,6 +79,8 @@ export class TaskInterface {
           liTask.classList.remove("completed");
           pCompleteOrPendent.classList.remove("text-green");
           pCompleteOrPendent.classList.add("text-muted");
+          buttonEdit.disabled = false;
+          buttonDelete.disabled = false;
         }
       };
 
@@ -121,6 +125,43 @@ export class TaskInterface {
                   <path d="M6.391 20.279a10 10 0 01-2.69-2.7" />
                 </svg>`;
 
+      const svgEdit = `<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-pencil preview-icon"
+                >
+                  <path
+                    d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"
+                  />
+                  <path d="m15 5 4 4" />
+                </svg>`;
+
+      const svgDelete = `<svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-trash preview-icon"
+                >
+                  <path d="M10 11v6" />
+                  <path d="M14 11v6" />
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" />
+                  <path d="M3 6h18" />
+                  <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+                </svg>`;
+
       /* Criando Elementos */
       const liTask = document.createElement("li");
 
@@ -138,23 +179,10 @@ export class TaskInterface {
       const divTaskStatusInfo = document.createElement("div");
       const pCompleteOrPendent = document.createElement("p");
       const pCompleteDate = document.createElement("p");
-      const buttonDropdownConfig = document.createElement("button");
-      const svgDropdownConfig = `<svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="#94a3b8"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  class="lucide lucide-ellipsis-vertical preview-icon"
-                >
-                  <circle cx="12" cy="12" r="1" />
-                  <circle cx="12" cy="5" r="1" />
-                  <circle cx="12" cy="19" r="1" />
-                </svg>`;
+
+      const divTaskActions = document.createElement("div");
+      const buttonEdit = document.createElement("button");
+      const buttonDelete = document.createElement("button");
 
       /* Adicionando classes nos elementos */
       liTask.classList.add("task");
@@ -165,12 +193,21 @@ export class TaskInterface {
       divCompleteOrPendent.classList.add("complete-or-pendent");
       divTaskStatus.classList.add("task-status");
       divTaskStatusInfo.classList.add("task-status-info");
-      buttonDropdownConfig.classList.add("dropdown-config");
+      divTaskActions.classList.add("task-actions");
+      buttonEdit.classList.add("btn-edit");
+      buttonDelete.classList.add("btn-delete");
 
       /* Adiciona addEventListener */
-
       inputTaskCheckbox.onclick = (e) => e.stopPropagation();
-      buttonDropdownConfig.onclick = (e) => e.stopPropagation();
+
+      // Deixando livre para você implementar depois:
+      buttonEdit.onclick = (e) => {
+        e.stopPropagation();
+      };
+
+      buttonDelete.onclick = (e) => {
+        e.stopPropagation();
+      };
 
       inputTaskCheckbox.onchange = (e) => {
         updateTaskState(e.target.checked);
@@ -183,17 +220,13 @@ export class TaskInterface {
       };
 
       /* Adicionando informações nos elementos */
-
       pTaskName.textContent = this.tasks[i].name;
 
       pCompleteOrPendent.textContent = textCompleteOrPendent;
       if (isComplete) {
         liTask.classList.add("completed");
-
         inputTaskCheckbox.checked = true;
-
         pCompleteOrPendent.classList.add("text-green");
-
         pCompleteDate.textContent = this.tasks[i].statusInfo.completeDate;
         pCompleteDate.classList.add("text-muted");
       } else {
@@ -201,29 +234,33 @@ export class TaskInterface {
       }
 
       /* Adicionando Atributos nos elementos */
-
       inputTaskCheckbox.type = "checkbox";
       inputTaskCheckbox.name = "task-complete";
 
       imgRank.src = this.tasks[i].rankInfo.asset;
       imgRank.alt = `Missão Rank ${this.tasks[i].rankInfo.name}`;
 
-      buttonDropdownConfig.type = "button";
+      buttonEdit.type = "button";
+      buttonEdit.disabled = this.tasks[i].statusInfo.statusTask;
+
+      buttonDelete.type = "button";
+      buttonDelete.disabled = this.tasks[i].statusInfo.statusTask;
+
+      buttonEdit.innerHTML = svgEdit;
+      buttonDelete.innerHTML = svgDelete;
 
       /* Estruturando os elementos */
-
       liTask.append(divTaskInfo, divShowRank, divCompleteOrPendent);
       divTaskInfo.append(inputTaskCheckbox, pTaskName);
       divShowRank.appendChild(imgRank);
-      divCompleteOrPendent.append(divTaskStatus, buttonDropdownConfig);
+      divCompleteOrPendent.append(divTaskStatus, divTaskActions);
 
       divTaskStatus.appendChild(divTaskStatusInfo);
       divTaskStatusInfo.append(pCompleteOrPendent, pCompleteDate);
 
-      buttonDropdownConfig.innerHTML = svgDropdownConfig;
+      divTaskActions.append(buttonEdit, buttonDelete);
 
       /* Adicionando task na lista */
-
       this.ulList.appendChild(liTask);
     }
     this.pMissionCount.textContent = this.tasks.length;

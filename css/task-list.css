@@ -167,18 +167,66 @@
   display: none;
 }
 
-.task .dropdown-config {
+.task .task-actions {
   display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  padding: 4px;
+.task-actions button {
+  padding: 6px 12px;
+  border-radius: 8px;
 
-  border-radius: 4px;
-  background-color: var(--bg-input);
+  display: flex;
+  cursor: pointer;
+  transition: 0.2s ease;
 
-  transition: 0.2s;
+  &.btn-edit {
+    background-color: #001c21;
+    border: 1px solid #00dfa5;
+    color: #00dfa5;
 
-  &:hover {
-    cursor: pointer;
-    background-color: var(--bg-progress-track);
+    &:hover {
+      transform: translate(-4%, -4%);
+      box-shadow: 4px 4px 0 #002931;
+    }
+
+    &:active {
+      transform: translate(1%, 1%) scale(0.96);
+      box-shadow: 0 0 0 #002931;
+    }
+  }
+
+  &.btn-delete {
+    background-color: #150b16;
+    border: 1px solid #ff3939;
+    color: #ff3939;
+
+    &:hover {
+      transform: translate(-4%, -4%);
+      box-shadow: 4px 4px 0 #150b16;
+    }
+
+    &:active {
+      transform: translate(1%, 1%) scale(0.96);
+      box-shadow: 0 0 0 #150b16;
+    }
+  }
+
+  &:disabled {
+    background-color: var(--bg-input);
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+    cursor: auto;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    &:active {
+      transform: none;
+      box-shadow: none;
+    }
   }
 }
