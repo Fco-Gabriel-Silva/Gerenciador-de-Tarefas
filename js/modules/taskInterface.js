@@ -1,3 +1,4 @@
+import { pickRankAsset } from "../utils/pick-rank-asset.js";
 import { Task } from "./task.js";
 
 export class TaskInterface {
@@ -5,6 +6,8 @@ export class TaskInterface {
   ulList;
   pMissionCount;
   formAddTask;
+  currentEditTaskId;
+  labelTaskName;
   inputTaskName;
   selectTaskRank;
   addTaskButton;
@@ -14,6 +17,8 @@ export class TaskInterface {
     this.ulList = document.querySelector(".task-list .list");
     this.pMissionCount = document.querySelector(".mission-count span");
     this.formAddTask = document.querySelector("form");
+    this.currentEditTaskId = null;
+    this.labelTaskName = document.querySelector("form div.input-header label");
     this.inputTaskName = document.querySelector("form input#task-name");
     this.selectTaskRank = document.querySelector("form select#task-rank");
     this.addTaskButton = document.querySelector(".add-task-button");
@@ -35,14 +40,38 @@ export class TaskInterface {
     this.formAddTask.onsubmit = (e) => {
       e.preventDefault();
 
-      const taskName = this.inputTaskName.value;
-      const taskRank = this.selectTaskRank.value;
+      if (this.currentEditTaskId) {
+        const taskNameUpdated = e.target[0].value;
+        const taskRankUpdated = e.target[1].value;
+        const assetRankUpdated = pickRankAsset(taskRankUpdated);
 
-      if (!taskName.trim()) return;
+        if (!taskNameUpdated.trim()) return;
 
-      const newTask = new Task({ name: taskName, rankName: taskRank });
+        const newTaskList = this.tasks.map((task) => {
+          if (task.id === this.currentEditTaskId) {
+            task.name = taskNameUpdated;
+            task.rankInfo.name = taskRankUpdated;
+            task.rankInfo.asset = assetRankUpdated;
+          }
+          return task;
+        });
 
-      this.tasks.push(newTask);
+        this.tasks = newTaskList;
+
+        this.currentEditTaskId = null;
+
+        this.labelTaskName.textContent = "REGISTRAR NOVA MISSÃO";
+        this.addTaskButton.querySelector("p").textContent = "Add";
+      } else {
+        const taskName = this.inputTaskName.value;
+        const taskRank = this.selectTaskRank.value;
+
+        if (!taskName.trim()) return;
+
+        const newTask = new Task({ name: taskName, rankName: taskRank });
+
+        this.tasks.push(newTask);
+      }
 
       this.inputTaskName.value = "";
       this.selectTaskRank.value = "A";
@@ -54,7 +83,7 @@ export class TaskInterface {
   }
 
   deleteTask(taskId) {
-    const newTaskList = this.tasks.filter((e) => !(e.id === taskId));
+    const newTaskList = this.tasks.filter((task) => !(task.id === taskId));
 
     this.tasks = newTaskList;
 
@@ -228,6 +257,21 @@ export class TaskInterface {
         if (this.tasks[i].statusInfo.statusTask) return;
         const newState = !this.tasks[i].statusInfo.statusTask;
         updateTaskState(newState);
+      };
+
+      /* Editar Task */
+      buttonEdit.onclick = (e) => {
+        e.stopPropagation();
+        liTask.classList.add("editing");
+
+        const taskId = liTask.dataset.id;
+        this.currentEditTaskId = taskId;
+
+        this.labelTaskName.textContent = "EDITAR MISSÃO";
+        this.addTaskButton.querySelector("p").textContent = "Salvar";
+
+        this.inputTaskName.value = this.tasks[i].name;
+        this.selectTaskRank.value = this.tasks[i].rankInfo.name;
       };
 
       /* Deleta Task */
