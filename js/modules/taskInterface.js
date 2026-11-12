@@ -53,6 +53,16 @@ export class TaskInterface {
     };
   }
 
+  deleteTask(taskId) {
+    const newTaskList = this.tasks.filter((e) => !(e.id === taskId));
+
+    this.tasks = newTaskList;
+
+    this.updateStorage();
+    this.clearList();
+    this.build();
+  }
+
   build() {
     for (let i = 0; i < this.tasks.length; i++) {
       /* Criando funções */
@@ -82,6 +92,7 @@ export class TaskInterface {
           buttonEdit.disabled = false;
           buttonDelete.disabled = false;
         }
+        this.updateStorage();
       };
 
       /* Criando variaveis */
@@ -219,7 +230,16 @@ export class TaskInterface {
         updateTaskState(newState);
       };
 
+      /* Deleta Task */
+      buttonDelete.onclick = (e) => {
+        e.stopPropagation();
+        const taskId = liTask.dataset.id;
+        this.deleteTask(taskId);
+      };
+
       /* Adicionando informações nos elementos */
+      liTask.dataset.id = this.tasks[i].id;
+
       pTaskName.textContent = this.tasks[i].name;
 
       pCompleteOrPendent.textContent = textCompleteOrPendent;

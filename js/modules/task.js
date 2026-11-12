@@ -1,6 +1,7 @@
 import { pickRankAsset } from "../utils/pick-rank-asset.js";
 
 export class Task {
+  id;
   name;
   rankInfo;
   statusInfo;
@@ -18,6 +19,7 @@ export class Task {
 
     const assetRank = pickRankAsset(rankName);
 
+    this.id = crypto.randomUUID();
     this.name = name;
     this.rankInfo = {
       name: rankName,
