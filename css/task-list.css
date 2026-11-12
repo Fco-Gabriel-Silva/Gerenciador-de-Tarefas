@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   padding-block: 18px;
-  gap: 10px;
+  gap: 8px;
 }
 
 .task-list-header {
@@ -17,7 +17,7 @@
 
 .task-list .list {
   max-height: 300px;
-  padding: 0 6px;
+  padding: 2px 6px;
 
   display: flex;
   flex-direction: column;
@@ -46,13 +46,24 @@
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
 
-  &:hover {
+  &:not(.completed):hover {
     transition: 0.2s;
     filter: brightness(1.1);
     transform: scale(1.01);
     border-color: var(--neon-green);
 
     cursor: pointer;
+  }
+
+  &.completed {
+    border-color: var(--border-main);
+    background-color: var(--bg-card);
+    opacity: 0.8;
+
+    .task-name {
+      text-decoration: line-through;
+      color: var(--text-muted);
+    }
   }
 }
 
@@ -106,13 +117,15 @@
 }
 
 .task-info .task-name {
+  width: 270px;
+
   font-size: 18px;
   border-left: 2px solid var(--border-main);
   padding-left: 10px;
   margin-left: 10px;
   transition: border-color 0.2s ease;
 
-  .task:hover & {
+  .task:not(.completed):hover & {
     border-color: var(--neon-green);
   }
 }
@@ -125,31 +138,100 @@
   }
 }
 
-.task .complete-or-not {
+.task .complete-or-pendent {
+  width: 200px;
+
   display: flex;
   flex-grow: 1;
   align-items: center;
   justify-content: space-between;
 }
 
-.task .complete-or-not .task-status {
+.task .complete-or-pendent .task-status {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.task .modal-config {
+.task .svg-complete {
+  display: none;
+}
+.task .svg-pendent {
+  display: block;
+}
+
+.task.completed .svg-complete {
+  display: block;
+}
+.task.completed .svg-pendent {
+  display: none;
+}
+
+.task .task-actions {
   display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-  padding: 4px;
+.task-actions button {
+  padding: 6px 12px;
+  border-radius: 8px;
 
-  border-radius: 4px;
-  background-color: var(--bg-input);
+  display: flex;
+  cursor: pointer;
+  transition: 0.2s ease;
 
-  transition: 0.2s;
+  &.btn-edit {
+    background-color: #001c21;
+    border: 1px solid #00dfa5;
+    color: #00dfa5;
 
-  &:hover {
-    cursor: pointer;
-    background-color: var(--bg-progress-track);
+    &:hover {
+      transform: translate(-4%, -4%);
+      box-shadow: 4px 4px 0 #002931;
+    }
+
+    &:active {
+      transform: translate(1%, 1%) scale(0.96);
+      box-shadow: 0 0 0 #002931;
+    }
   }
+
+  &.btn-delete {
+    background-color: #150b16;
+    border: 1px solid #ff3939;
+    color: #ff3939;
+
+    &:hover {
+      transform: translate(-4%, -4%);
+      box-shadow: 4px 4px 0 #150b16;
+    }
+
+    &:active {
+      transform: translate(1%, 1%) scale(0.96);
+      box-shadow: 0 0 0 #150b16;
+    }
+  }
+
+  &:disabled {
+    background-color: var(--bg-input);
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+    cursor: auto;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    &:active {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.task.editing {
+  pointer-events: none;
+  opacity: 0.6;
 }
