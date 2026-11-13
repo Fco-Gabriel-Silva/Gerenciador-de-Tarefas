@@ -36,13 +36,14 @@
 }
 
 .progress-bar-fill {
-  width: 40%;
   height: 22px;
 
   box-shadow: 0 0 16px var(--neon-green);
 
   background-color: var(--neon-green);
   border-radius: 20px;
+
+  transition: 0.6s ease;
 }
 
 .progress-bar-motivacional-text {

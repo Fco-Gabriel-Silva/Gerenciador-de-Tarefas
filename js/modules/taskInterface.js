@@ -2,6 +2,8 @@ import { pickRankAsset } from "../utils/pick-rank-asset.js";
 import { Task } from "./task.js";
 
 export class TaskInterface {
+  progressBarText;
+  progressBarFill;
   tasks;
   ulList;
   pMissionCount;
@@ -11,8 +13,11 @@ export class TaskInterface {
   inputTaskName;
   selectTaskRank;
   addTaskButton;
+  count;
 
   constructor(tasks) {
+    this.progressBarFill = document.querySelector(".progress-bar-fill");
+    this.progressBarText = document.querySelector(".progress-bar-text span");
     this.tasks = [...tasks];
     this.ulList = document.querySelector(".task-list .list");
     this.pMissionCount = document.querySelector(".mission-count span");
@@ -22,8 +27,10 @@ export class TaskInterface {
     this.inputTaskName = document.querySelector("form input#task-name");
     this.selectTaskRank = document.querySelector("form select#task-rank");
     this.addTaskButton = document.querySelector(".add-task-button");
+    this.count = 0;
 
     this.handleAddTask();
+    this.updateProgressBar();
   }
 
   clearList() {
@@ -34,6 +41,51 @@ export class TaskInterface {
 
   updateStorage() {
     localStorage.setItem("tasks", JSON.stringify(this.tasks));
+    this.updateProgressBar();
+  }
+
+  ascSetInterval(progressPercent) {
+    const mySetInterval = setInterval(() => {
+      if (this.count < progressPercent) {
+        this.count++;
+        this.progressBarText.textContent = `${this.count}%`;
+      }
+      if (this.count === progressPercent) clearInterval(mySetInterval);
+    }, 10);
+  }
+
+  descSetInterval(progressPercent) {
+    const mySetInterval = setInterval(() => {
+      if (this.count > progressPercent) {
+        this.count--;
+        this.progressBarText.textContent = `${this.count}%`;
+        if (this.count === progressPercent) clearInterval(mySetInterval);
+      }
+    }, 10);
+  }
+
+  updateProgressBar() {
+    const tasksCompleted = this.tasks.filter(
+      (task) => task.statusInfo.statusTask,
+    );
+
+    const completedTasksPercent = tasksCompleted.length * 100;
+    const progressPercent =
+      this.tasks.length === 0
+        ? 0
+        : Math.round(completedTasksPercent / this.tasks.length);
+
+    if (!progressPercent) this.progressBarText.textContent = `${0}%`;
+
+    if (this.count < progressPercent) {
+      this.ascSetInterval(progressPercent);
+    } else if (this.count > progressPercent) {
+      this.descSetInterval(progressPercent);
+    }
+
+    /* this.progressBarText.textContent = `${progressPercent}%`; */
+
+    this.progressBarFill.style.width = `${progressPercent}%`;
   }
 
   handleAddTask() {
