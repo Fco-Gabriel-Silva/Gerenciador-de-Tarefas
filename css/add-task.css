@@ -140,3 +140,18 @@
     flex-basis: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .add-task-input input {
+    height: 44px;
+    font-size: 16px;
+  }
+
+  .add-task-rank select {
+    height: 44px;
+  }
+
+  .add-task-button {
+    height: 44px;
+  }
+}
