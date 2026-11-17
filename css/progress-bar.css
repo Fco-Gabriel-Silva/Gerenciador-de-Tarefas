@@ -21,7 +21,7 @@
 }
 
 .progress-bar-text {
-  font-size: 25px;
+  font-size: 26px;
   font-weight: 700;
 
   margin-bottom: 10px;
@@ -36,17 +36,32 @@
 }
 
 .progress-bar-fill {
-  width: 40%;
   height: 22px;
 
   box-shadow: 0 0 16px var(--neon-green);
 
   background-color: var(--neon-green);
   border-radius: 20px;
+
+  transition: 0.6s ease;
 }
 
 .progress-bar-motivacional-text {
   justify-items: center;
   color: var(--text-muted);
   font-weight: 400;
+}
+
+@media (max-width: 700px) {
+  .progress-bar-main {
+    border-right: none;
+  }
+
+  .progress-bar-text {
+    font-size: 22px;
+  }
+
+  .progress-bar-motivacional-text {
+    display: none;
+  }
 }

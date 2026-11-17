@@ -30,7 +30,9 @@
 }
 
 body {
-  margin: 20px 20%;
+  max-width: 960px;
+  margin: 20px auto;
+  padding-inline: 20px;
 
   background-color: var(--bg-main);
   background-image: url(../assets/my_hero_academia_overlay_texture.png);

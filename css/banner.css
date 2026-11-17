@@ -20,6 +20,7 @@
     display: flex;
     gap: 10px;
     order: 1;
+    text-wrap: nowrap;
 
     &::after {
       content: "";
@@ -67,4 +68,91 @@
   height: 100%;
 
   filter: drop-shadow(0 0 20px var(--neon-green));
+}
+
+@media (max-width: 900px) {
+  .banner h1 {
+    font-size: 58px;
+
+    & .row-2 {
+      font-size: 40px;
+    }
+  }
+}
+
+@media (max-width: 780px) {
+  .banner h1 {
+    font-size: 44px;
+
+    & .row-2 {
+      font-size: 30px;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .banner {
+    background: url(../assets/header-deku-75-opacity.png) center no-repeat;
+    background-size: cover;
+  }
+
+  .banner .img-deku {
+    display: none;
+  }
+
+  .banner .banner-text {
+    align-items: center;
+
+    & .text-1 {
+      width: 79%;
+      align-items: center;
+
+      &::before,
+      &::after {
+        content: "";
+        flex: 1;
+        height: 2px;
+        background-color: var(--neon-green);
+        margin-top: 0;
+      }
+    }
+  }
+
+  .banner h1 {
+    font-size: 60px;
+    text-align: center;
+
+    &.text-2 {
+      width: 80%;
+    }
+
+    & .row-2 {
+      font-size: 40px;
+    }
+  }
+}
+
+@media (max-width: 550px) {
+  .banner {
+    height: 180px;
+  }
+
+  .banner .banner-text {
+    & .text-1 {
+      width: 62%;
+    }
+  }
+
+  .banner h1 {
+    font-size: 40px;
+    text-align: center;
+
+    &.text-2 {
+      width: 60%;
+    }
+
+    & .row-2 {
+      font-size: 24px;
+    }
+  }
 }
