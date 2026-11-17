@@ -40,7 +40,7 @@ export class TaskInterface {
   }
 
   updateStorage() {
-    localStorage.setItem("tasks", JSON.stringify(this.tasks));
+    localStorage.setItem("hero-analysis:tasks", JSON.stringify(this.tasks));
     this.updateProgressBar();
   }
 
